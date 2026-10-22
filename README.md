@@ -1181,10 +1181,6 @@ The following official resources can help you understand the services PagePort u
 
 A license file has not been included in this package.
 
-Unless the repository owner adds a license, assume normal copyright applies. Do not assume that the source code may be redistributed, modified, or reused under an open-source license.
-
-If you intend to publish PagePort as an open-source project, add a license file that clearly states the permissions and conditions for using the code.
-
 ---
 
 ## PagePort 1.0
