@@ -1,4 +1,6 @@
-# PagePort 1.0
+# PagePort
+
+**Please keep in mind that PagePort is a WEB APP!**
 
 ### A beginner-friendly way to preview and publish a static website from your Mac
 
@@ -133,7 +135,7 @@ Local previewing may work without an internet connection, but any resources load
 
 ### Step 1: Download the app
 
-Download the PagePort 1.0 release ZIP from the project's GitHub Releases page or another trusted location provided by the project maintainer.
+Download the PagePort release ZIP from the project's GitHub Releases page or another trusted location provided by the project maintainer.
 
 Avoid downloading copies from unfamiliar websites.
 
@@ -147,7 +149,7 @@ Locate the PagePort ZIP archive.
 
 Double-click the ZIP file. macOS should extract its contents into a folder.
 
-Open the extracted `PagePort_1.0_Mac` folder.
+Open the extracted `PagePort_Mac` folder.
 
 ### Step 4: Move the app into Applications
 
@@ -1183,7 +1185,7 @@ A license file has not been included in this package.
 
 ---
 
-## PagePort 1.0
+## PagePort
 
 **Import. Preview. Publish.**
 
