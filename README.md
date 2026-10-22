@@ -1,2 +1,1194 @@
-# PagePort
-PagePort is a beginner-friendly macOS app for importing HTML files, website folders, or ZIP archives, previewing websites locally, and publishing static sites to Cloudflare Pages—all without needing Terminal commands.
+# PagePort 1.0
+
+### A beginner-friendly way to preview and publish a static website from your Mac
+
+PagePort is a macOS app that helps you take a website you already have—whether it is one HTML file, a folder containing a complete website, or a ZIP archive—and publish it to **Cloudflare Pages**. You can preview the site on your own Mac before making it public, then use PagePort to publish it without needing to type Terminal commands or install Node.js, Homebrew, or another runtime.
+
+This guide is written for people who may be publishing a website for the very first time. You do not need to be an experienced web developer, but you should be comfortable downloading a file and opening an app on your Mac.
+
+> **Important:** PagePort is designed for **static websites**. It can publish HTML, CSS, JavaScript files that run in the visitor's browser, images, fonts, and other static assets. It does not turn server-side code into a working backend, and it does not automatically build projects that need a separate build process.
+
+---
+
+## Table of Contents
+
+- [What PagePort Does](#what-pageport-does)
+- [Who PagePort Is For](#who-pageport-is-for)
+- [What You Need Before Starting](#what-you-need-before-starting)
+- [Download and Open PagePort](#download-and-open-pageport)
+- [Understanding Your Website Files](#understanding-your-website-files)
+- [Choosing the Right Import Option](#choosing-the-right-import-option)
+- [Step 1: Import Your Website](#step-1-import-your-website)
+- [Step 2: Preview Your Website](#step-2-preview-your-website)
+- [Step 3: Create Cloudflare Credentials](#step-3-create-cloudflare-credentials)
+- [Step 4: Connect Cloudflare to PagePort](#step-4-connect-cloudflare-to-pageport)
+- [Step 5: Publish Your Website](#step-5-publish-your-website)
+- [Publishing to an Existing Project](#publishing-to-an-existing-project)
+- [Getting Your Website Link](#getting-your-website-link)
+- [QR Codes and Traffic Analytics](#qr-codes-and-traffic-analytics)
+- [Publishing Changes](#publishing-changes)
+- [Security and Privacy](#security-and-privacy)
+- [Files PagePort Skips](#files-pageport-skips)
+- [What PagePort Does Not Do](#what-pageport-does-not-do)
+- [Troubleshooting](#troubleshooting)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [Privacy and External Services](#privacy-and-external-services)
+- [Contributing](#contributing)
+- [Helpful Documentation](#helpful-documentation)
+- [License](#license)
+
+---
+
+## What PagePort Does
+
+PagePort brings several basic website-publishing tasks together in one small Mac app.
+
+### Import an HTML file
+
+Have a single HTML file that you created yourself or received from another tool? PagePort lets you import it without needing to manually upload it through a hosting dashboard.
+
+This is useful for simple webpages, personal projects, demonstrations, and other pages that are contained in a single file.
+
+### Import a complete website folder
+
+A website often consists of several files working together. PagePort can import a folder that contains your HTML pages, stylesheets, JavaScript files, images, fonts, and other assets.
+
+This is generally the best option for a complete website.
+
+### Import a ZIP archive
+
+If someone gives you a website in a `.zip` file, you can import the archive directly rather than manually extracting and selecting its individual files.
+
+### Preview before publishing
+
+PagePort lets you open your imported website in your default browser before deploying it. This gives you an opportunity to inspect your content and catch problems before making the site public.
+
+### Publish through Cloudflare Pages
+
+Connect your Cloudflare account, select a Pages project, and publish your local website files using PagePort's interface.
+
+### Choose a Cloudflare Pages project
+
+PagePort can work with an existing Pages project or create a project when you are publishing to a new project name.
+
+Always check which project is selected before publishing, because publishing to an existing project can replace its current website files.
+
+### Open your published website
+
+After publication, PagePort uses the actual public URL returned by Cloudflare instead of simply guessing the address based on the project name.
+
+### Generate a QR code
+
+PagePort can request a QR-code image for your published website address. This can be useful for sharing a link on a poster, presentation, handout, or another device.
+
+### Store your API token securely
+
+After successful verification, PagePort stores the Cloudflare API token in macOS Keychain instead of intentionally saving the token in an ordinary settings text file.
+
+PagePort's intended workflow is straightforward:
+
+**Import → Preview → Connect → Publish → Share**
+
+---
+
+## Who PagePort Is For
+
+PagePort may be useful if you have created:
+
+- A personal website
+- A portfolio
+- A class project
+- A small business landing page
+- An informational website
+- A collection of static HTML pages
+- A website generated by an AI coding tool
+- A website built using a visual editor or another development tool
+
+You do not need to know how to use Terminal to operate PagePort's normal import, preview, and publishing workflow.
+
+You will need a website to publish and a Cloudflare account to host it online.
+
+If you are completely new to website development, that is fine. This README explains the basics before walking through the publishing process.
+
+---
+
+## What You Need Before Starting
+
+Before publishing a website, make sure you have the following:
+
+1. **A Mac running macOS 12 or newer.**
+2. **PagePort 1.0**, obtained from the project's trusted release or repository.
+3. **A website to publish**, normally including an HTML page named `index.html`.
+4. **A Cloudflare account** that you can use to create or access a Pages project.
+5. **An internet connection** for connecting to Cloudflare and publishing.
+6. **A Cloudflare API token and Account ID** with the permissions PagePort requires.
+
+You do not need to install Homebrew, Node.js, Python, or a separate command-line publishing tool for the ordinary PagePort workflow described here.
+
+Local previewing may work without an internet connection, but any resources loaded from other websites will still require access to those services.
+
+---
+
+## Download and Open PagePort
+
+### Step 1: Download the app
+
+Download the PagePort 1.0 release ZIP from the project's GitHub Releases page or another trusted location provided by the project maintainer.
+
+Avoid downloading copies from unfamiliar websites.
+
+### Step 2: Find the downloaded ZIP
+
+Open Finder and navigate to your **Downloads** folder.
+
+Locate the PagePort ZIP archive.
+
+### Step 3: Extract the archive
+
+Double-click the ZIP file. macOS should extract its contents into a folder.
+
+Open the extracted `PagePort_1.0_Mac` folder.
+
+### Step 4: Move the app into Applications
+
+Locate `PagePort.app`.
+
+You can move it into your Mac's **Applications** folder so it is stored alongside your other applications.
+
+Keeping the app in Applications is a convenient way to access it later.
+
+### Step 5: Open PagePort
+
+Double-click `PagePort.app`.
+
+The main menu provides the available website-importing, previewing, account-configuration, and publishing actions.
+
+### What if macOS displays a security warning?
+
+PagePort's distributed application package is not signed and notarized with an Apple Developer ID. Depending on your macOS security settings, your Mac may show a warning or block the app from opening.
+
+A warning does not automatically prove that an application is malicious, but you should not bypass security protections for software you do not trust.
+
+If you trust the download and macOS blocks the app, first try opening it normally once. You can then check **System Settings → Privacy & Security** for any available option to allow the app.
+
+Apple provides current guidance here:
+
+[Apple Support: Safely open apps on your Mac](https://support.apple.com/102445)
+
+Only proceed if you trust the source of the application.
+
+---
+
+## Understanding Your Website Files
+
+Before using PagePort, it helps to understand how a website is organized.
+
+A website is often made up of several different types of files.
+
+For example, a simple website folder might look like this:
+
+```text
+MyWebsite/
+├── index.html
+├── about.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── script.js
+└── images/
+    └── banner.png
+```
+
+Let's explain what each item does.
+
+### HTML files
+
+HTML files contain the structure and content of a webpage.
+
+They tell the browser where to display headings, paragraphs, images, links, buttons, and other elements.
+
+For most static websites, the main page is named:
+
+`index.html`
+
+This is normally the page visitors see when they open the website's main address.
+
+A website may also contain other HTML files, such as `about.html`, `contact.html`, or `projects.html`.
+
+### CSS files
+
+CSS controls the visual appearance of a webpage.
+
+It can determine colors, fonts, spacing, layouts, borders, animations, and other design elements.
+
+For example, `styles.css` might make a page use a dark background, rounded buttons, and a particular font.
+
+### JavaScript files
+
+JavaScript adds behavior and interactivity to websites.
+
+It can power menus, calculators, animations, interactive forms, games, and other features that run in the visitor's browser.
+
+PagePort can publish browser-side JavaScript files as part of a static website.
+
+However, JavaScript that depends on a private backend or server-side service still needs that separate service to function.
+
+### Images and other assets
+
+A website may also contain images, icons, fonts, audio files, videos, and other resources.
+
+Your HTML and CSS may refer to these files by their locations within the project.
+
+For example, your HTML might refer to an image at:
+
+`images/banner.png`
+
+If that image is missing from the imported website, it may not appear in the preview or on the published site.
+
+### Why importing the complete folder matters
+
+Imagine you import only `index.html`, even though it refers to `styles.css` and `banner.png`.
+
+The page might open, but its design and images may be missing because those supporting files were not included.
+
+For this reason, **importing the complete website folder is usually the best choice** when your website consists of multiple files.
+
+### The `index.html` rule
+
+For reliable publishing, place `index.html` at the top level of your website folder.
+
+That means it should be directly inside the folder you import, not hidden several folders deep.
+
+For example, this layout can cause problems if you select the wrong folder:
+
+```text
+MyWebsite/
+└── exported-project/
+    ├── index.html
+    ├── styles.css
+    └── images/
+        └── banner.png
+```
+
+Here, the actual website files are inside `exported-project`.
+
+In this example, select the inner `exported-project` folder, or reorganize the files so `index.html` is directly inside `MyWebsite`.
+
+PagePort can handle some common enclosing-folder arrangements, but a root-level `index.html` is the safest structure.
+
+---
+
+## Choosing the Right Import Option
+
+PagePort provides three main ways to import a website.
+
+| What you have | Import option | Recommended use |
+|---|---|---|
+| One self-contained HTML file | **Import HTML File…** | A simple webpage contained in one file |
+| A complete website folder | **Import Website Folder…** | A website containing HTML, CSS, JavaScript, images, or other assets |
+| A ZIP archive containing a website | **Import Website ZIP…** | A website packaged in a compressed archive |
+
+### Which option should beginners choose?
+
+**Choose Import Website Folder… if you have a complete website project.**
+
+It is usually the most reliable option because it lets PagePort work with all the files that belong to the website.
+
+Use the HTML-file option when you are confident that the page is self-contained or when you intentionally want to publish a single HTML file.
+
+Use the ZIP option when the website has been packaged into a ZIP archive.
+
+### Important note about importing
+
+Importing a different website replaces PagePort's current local working copy with the newly selected website.
+
+PagePort does not intentionally delete or modify the original source file or folder you selected, but it is still important to choose the correct source.
+
+Keep backups of websites that you do not want to lose.
+
+---
+
+## Step 1: Import Your Website
+
+Once PagePort is open, you can import your website.
+
+1. Open PagePort.
+2. Choose **Import HTML File…**, **Import Website Folder…**, or **Import Website ZIP…** from the main menu.
+3. In the macOS file picker, locate the website you want to import.
+4. Select the appropriate file, folder, or ZIP archive.
+5. Confirm your selection.
+6. Wait for PagePort to finish importing the website.
+7. Check the information displayed in the main menu to confirm the selected website.
+
+PagePort creates a working copy of the imported website inside your Mac user's Application Support folder.
+
+You do not normally need to locate or manage this folder yourself.
+
+### Showing the imported website in Finder
+
+Choose **Show Selected Website in Finder** to locate the original source that was imported.
+
+If the original source has been moved or deleted, PagePort may still retain its working copy for previewing and publishing. The menu option will explain when the original source path is unavailable.
+
+### What if PagePort cannot find an HTML page?
+
+Open the selected folder or ZIP in Finder and look for an `.html` or `.htm` file.
+
+For the simplest publishing setup, make sure the website has a file called `index.html` at the top level.
+
+If your website files are buried inside a nested folder, select the folder that actually contains the website.
+
+---
+
+## Step 2: Preview Your Website
+
+Before publishing anything online, preview the website on your Mac.
+
+This gives you a chance to check how it looks and whether its main features work.
+
+### How to preview
+
+1. Import your website into PagePort.
+2. Choose **Preview Website in Browser**.
+3. Wait for your default browser to open the local website.
+4. Review the design, text, images, and page layout.
+5. Click buttons and links that should work.
+6. Scroll through the entire page.
+7. Check that the website looks the way you intended.
+
+If something is missing, fix the source website and import the corrected version again before publishing.
+
+### What does local preview mean?
+
+A local preview opens files stored on your Mac.
+
+It does not mean the website has been published.
+
+Other people generally cannot access your local file path as a public website, and opening the preview does not by itself deploy the site to Cloudflare Pages.
+
+### Why might the preview look different from the live website?
+
+Some browser features behave differently when a page is opened directly from local files.
+
+For example, a page that fetches local data or uses JavaScript modules may encounter browser restrictions.
+
+Other pages load resources from external addresses, such as online fonts, images, APIs, or video services. Those resources depend on their respective services being available.
+
+For important projects, always check the published URL after deployment as well.
+
+---
+
+## Step 3: Create Cloudflare Credentials
+
+PagePort uses Cloudflare Pages to host your published website.
+
+To communicate with Cloudflare, PagePort needs two things:
+
+- **Cloudflare Account ID:** Identifies the Cloudflare account in which your Pages project is located.
+- **Cloudflare API token:** A secret credential that authorizes PagePort to perform permitted actions through Cloudflare's API.
+
+Treat your API token like a password.
+
+Do not post it in a GitHub issue, include it in your website files, or share it with someone who does not need it.
+
+### 3A. Open Cloudflare's API token settings
+
+1. Open the Cloudflare dashboard.
+2. Sign in to your account.
+3. Open **My Profile → API Tokens**, or use the direct link below.
+4. Choose the option to create an API token.
+5. Select the custom token option if necessary.
+6. Configure the appropriate permissions.
+
+**Official page:** [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens)
+
+Cloudflare may change the exact names or placement of dashboard controls, so the wording may differ slightly from these instructions.
+
+### 3B. Configure the necessary permission
+
+For the current PagePort workflow, configure the token with this account-level permission:
+
+**Account → Cloudflare Pages → Edit**
+
+Make sure the token is authorized for the Cloudflare account where you intend to publish.
+
+Do not grant unrelated permissions simply to get past an error. Giving a token more access than it needs increases the potential impact if the token is exposed.
+
+Cloudflare provides more information here:
+
+- [Create a Cloudflare API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
+- [Cloudflare Pages API documentation](https://developers.cloudflare.com/pages/configuration/api/)
+- [Cloudflare API token permissions](https://developers.cloudflare.com/fundamentals/api/reference/permissions/)
+
+### 3C. Create and copy your token
+
+1. Complete Cloudflare's token-creation steps.
+2. Copy the generated token when Cloudflare displays it.
+3. Keep the token private.
+4. Save it temporarily somewhere secure until you have entered and verified it in PagePort.
+
+Cloudflare may show the token secret only once, so make sure you have a copy before leaving the page.
+
+**Never put your Cloudflare API token inside your HTML, CSS, or JavaScript files.** Website files published online may be visible to anyone who visits the site.
+
+If the token is lost, you can create a replacement in Cloudflare and save the replacement in PagePort.
+
+### 3D. Find your Cloudflare Account ID
+
+The Account ID tells PagePort which Cloudflare account it should use.
+
+To find it:
+
+1. Open the Cloudflare dashboard.
+2. Select the account where you want to publish.
+3. Look in the account overview or account details section.
+4. Find the field labeled **Account ID**.
+5. Copy the value exactly.
+
+Your Account ID is different from your email address, domain name, Pages project name, and published website address.
+
+PagePort expects the Account ID shown by Cloudflare, typically a 32-character hexadecimal value.
+
+---
+
+## Step 4: Connect Cloudflare to PagePort
+
+Once you have your Account ID and API token, you can connect PagePort to Cloudflare.
+
+You normally only need to configure this once per Mac user account, unless you change accounts, disconnect Cloudflare, or replace the token.
+
+### Configure your Account ID
+
+1. Open PagePort.
+2. Open the main menu.
+3. Choose **Cloudflare Account Settings…**.
+4. Choose **Enter Account ID**.
+5. Paste your Cloudflare Account ID.
+6. Save the Account ID.
+7. Return to the account settings menu.
+
+Double-check that the ID belongs to the account where you want to host your website.
+
+### Add your API token
+
+1. Open **Cloudflare Account Settings…**.
+2. Choose **Paste API Token**.
+3. Paste the token you created in Cloudflare.
+4. Follow the prompts to verify and save the token.
+5. If PagePort confirms that the token is valid, return to the account settings menu.
+6. Choose **Test Connection**.
+
+PagePort checks the credentials with Cloudflare.
+
+After successful verification, PagePort stores the token in **macOS Keychain**, so you should not have to paste it every time you open the app.
+
+The Account ID is stored separately in PagePort's local settings.
+
+### What if the connection test fails?
+
+Before creating another token, check the following:
+
+- The Account ID was copied from the correct Cloudflare account.
+- The token includes **Account → Cloudflare Pages → Edit** permission.
+- The token's account scope includes the same account as the Account ID you entered.
+- The token has not expired or been revoked.
+- Your Mac has an active internet connection.
+
+Correct any mistakes and choose **Test Connection** again.
+
+If it still fails, record the exact error message and consult Cloudflare's official API documentation. Do not share the token itself when asking for help.
+
+### Disconnecting Cloudflare
+
+PagePort provides a **Disconnect Cloudflare** option.
+
+Disconnecting removes the saved token from macOS Keychain and clears PagePort's saved Account ID.
+
+It does not delete your published Cloudflare Pages website or erase your local website working copy.
+
+You will need to connect Cloudflare again before publishing through PagePort.
+
+---
+
+## Step 5: Publish Your Website
+
+You have imported your site, previewed it, and connected Cloudflare.
+
+You are now ready to publish.
+
+> **Before proceeding:** A normal Cloudflare Pages website is publicly accessible. Anyone who has its address may be able to visit it, and search engines may discover it. Check that you are not publishing private or confidential files.
+
+### Publish step by step
+
+1. Open PagePort.
+2. Confirm that the correct local website is selected.
+3. Preview it again if you have made changes.
+4. Choose **Publish Website…**.
+5. PagePort opens the local preview and asks you to confirm that you want to publish that saved website.
+6. Review the confirmation and continue only if you are ready to publish.
+7. If a project has not already been selected, PagePort will suggest a project name.
+8. Review the proposed name and make changes if needed.
+9. Confirm the publishing action.
+10. Wait for Cloudflare to accept the deployment.
+11. When Cloudflare returns the actual website address, PagePort displays the verified URL and offers to open it.
+12. Open the public website and check the result.
+
+Publishing requires an internet connection.
+
+### Choosing a project name
+
+A project name helps identify your website inside Cloudflare.
+
+PagePort can suggest a name based on the imported website, but you can edit it.
+
+For a new project, the name must follow Cloudflare's naming requirements. In the current PagePort workflow, use:
+
+- Lowercase letters (`a`–`z`)
+- Numbers (`0`–`9`)
+- Hyphens (`-`) where appropriate
+- A name beginning with a letter or number
+- A name no longer than 63 characters
+
+For example, `my-first-website` is a suitable style of name.
+
+A project name does not guarantee the exact public URL. PagePort asks Cloudflare for the project's real URL after deployment and uses the address returned by Cloudflare.
+
+### What if Cloudflare has not returned a website URL?
+
+Sometimes Cloudflare may accept a deployment but PagePort cannot immediately verify the public address.
+
+PagePort does not simply invent an address based on the project name.
+
+Open the Cloudflare project dashboard from PagePort and check the deployment status and domain information.
+
+---
+
+## Publishing to an Existing Project
+
+If you already have a Cloudflare Pages project, you can select it instead of creating a new project.
+
+### How to select an existing project
+
+1. Make sure PagePort is connected to the correct Cloudflare account.
+2. Choose **Choose Cloudflare Project…**.
+3. Select the desired Pages project from the available list.
+4. Read the confirmation carefully before confirming the switch.
+5. Verify that the intended project is selected.
+6. Choose **Publish Website…** when you are ready to deploy.
+
+### Important: Publishing can replace the website
+
+Publishing to an existing project may replace the website files currently served by that project with the files in PagePort's selected local website.
+
+Changing the active project selection does not publish anything by itself. However, the next publication is a real deployment.
+
+Before confirming a publication, make sure you have selected the correct project and that replacing its current website is intentional.
+
+If a project already exists with the proposed name, PagePort may warn you before using it in situations where the existing content could be replaced.
+
+Do not publish to a project containing a website you need to preserve unless replacing its files is your intention.
+
+---
+
+## Getting Your Website Link
+
+After a successful publication, PagePort stores the public URL returned by Cloudflare.
+
+To open your published website later:
+
+1. Open PagePort.
+2. Choose **Website Link, Traffic & QR…**.
+3. Choose **Open Published Website**.
+
+Your default browser should open the public website.
+
+### Open Cloudflare's dashboard
+
+You can also choose **Open Cloudflare Dashboard** to access the dashboard for the selected Pages project.
+
+Cloudflare's dashboard is where you can review project settings, domains, deployments, analytics, and other hosting options provided by Cloudflare.
+
+If PagePort does not have a verified website URL, check the Cloudflare dashboard to see the project's actual address and deployment status.
+
+---
+
+## QR Codes and Traffic Analytics
+
+PagePort provides shortcuts related to sharing your published website and checking its traffic.
+
+### Generating a QR code
+
+A QR code lets someone scan an image with a phone camera to open your website.
+
+This can be useful for a presentation, poster, business card, class project, or printed handout.
+
+To generate a QR code:
+
+1. Publish your website and make sure it has a saved public URL.
+2. Open PagePort.
+3. Choose **Website Link, Traffic & QR…**.
+4. Choose **Generate a QR Code**.
+5. Read the privacy prompt.
+6. If you agree, confirm that PagePort may send your published URL to the external QR-code service.
+7. PagePort requests the QR image and saves it in its local Application Support folder as `PagePort-QR.png`.
+8. Follow the prompt to open the generated image.
+
+Test the QR code with a phone camera before printing or sharing it widely.
+
+### QR-code privacy
+
+QR generation uses the external service [api.qrserver.com](https://api.qrserver.com/).
+
+PagePort sends your published website URL to that service to create the QR image. Do not use this option if you do not want the URL sent to the external service.
+
+### Viewing visitor statistics
+
+PagePort can open the Cloudflare dashboard for the selected project, but Cloudflare must provide and collect the analytics data.
+
+To check traffic:
+
+1. Open the Cloudflare dashboard.
+2. Select the correct Pages project.
+3. Find the Web Analytics or analytics area.
+4. Enable the relevant analytics feature if it is available and not already configured.
+5. Allow time for visitor data to be collected.
+6. Return to the dashboard to view the available information.
+
+Analytics are provided by Cloudflare, not measured independently by PagePort.
+
+Dashboard layouts and available options can change. If you cannot find the relevant setting, consult the [Cloudflare Pages documentation](https://developers.cloudflare.com/pages/).
+
+---
+
+## Publishing Changes
+
+Websites are often edited after they are first published.
+
+For example, you might change a heading, replace an image, add a new page, fix a button, or redesign the layout.
+
+PagePort does not automatically synchronize every change made to your original source folder. You must import the revised website into PagePort before publishing the new version.
+
+### How to publish an updated version of your website
+
+1. Open the original website project in the editor you used to create it.
+2. Make the changes you want.
+3. Save the files.
+4. Open PagePort.
+5. Import the updated HTML file, website folder, or ZIP archive again.
+6. Choose **Preview Website in Browser**.
+7. Check that the new version looks right.
+8. Choose **Publish Website…**.
+9. Confirm the publication.
+10. Open your published website and verify the changes.
+
+### Why do I need to import the site again?
+
+PagePort publishes its own saved working copy.
+
+If you make changes to a separate folder after importing it, those changes do not automatically appear in PagePort's working copy.
+
+Re-importing the updated website ensures that PagePort uses the files you intended to publish.
+
+### What happens when I publish to the same project?
+
+Publishing to the same Cloudflare Pages project can replace the content currently served by that project with the newly deployed website files.
+
+Always preview the local website and verify the destination project before publishing.
+
+Keep a separate backup of any website content you might need to restore later.
+
+---
+
+## Security and Privacy
+
+PagePort makes publishing simpler, but you are still responsible for choosing which files become public.
+
+A static website is delivered to visitors' browsers. Anything included in its published files should be considered potentially accessible to the public.
+
+### Do not publish passwords or secrets
+
+Never put the following inside public website files:
+
+- Passwords
+- Cloudflare API tokens
+- Private keys
+- Account credentials
+- Confidential documents
+- Private information about yourself or other people
+- Data that you do not have permission to publish
+
+JavaScript delivered to a visitor's browser is not a secure place to store a secret.
+
+If your website needs to communicate with a private service, use a properly designed backend rather than embedding private credentials in the frontend.
+
+### Review your website before publishing
+
+Before deploying, inspect the files you imported.
+
+Make sure you have permission to publish images, fonts, code, and other media included in the website.
+
+Be particularly careful when publishing school assignments, personal pages, or projects containing real names, contact details, or other sensitive information.
+
+### Keep your Cloudflare token private
+
+After verification, PagePort stores the token in macOS Keychain.
+
+Still, protect your Mac user account, avoid sharing the token, and do not include it in a GitHub commit, issue, screenshot, or public document.
+
+If you believe your token has been exposed, revoke it through Cloudflare and create a replacement.
+
+### Use a limited API token
+
+Grant the token only the permissions PagePort requires for the intended Cloudflare account.
+
+Avoid granting unrelated access simply for convenience.
+
+### Inspect ZIP archives before importing
+
+A ZIP archive may include files unrelated to the actual website.
+
+Open unfamiliar archives in Finder and review their contents before importing them.
+
+### Public versus restricted access
+
+A normal Cloudflare Pages deployment is public unless you separately configure an access-control feature.
+
+PagePort does not provide a built-in visitor login system.
+
+Do not assume that a website is private simply because its URL is difficult to guess.
+
+If you need restricted access, investigate Cloudflare's access-control products and configure them separately. Test the configuration before sharing the site with intended visitors.
+
+### Important note about filtering
+
+PagePort skips some common development, configuration, and credential-related files during publishing. However, this filtering is not a complete security scanner.
+
+A secret might be stored in a file with an ordinary name, copied directly into HTML, or included inside a JavaScript file.
+
+**Always review your website manually before publishing it.**
+
+---
+
+## Files PagePort Skips
+
+To reduce the chance of accidentally publishing development clutter or common secret-bearing files, PagePort filters some names while preparing files for deployment.
+
+Examples of folders it skips include:
+
+- `.git`
+- `node_modules`
+- `.wrangler`
+- `.netlify`
+- `.ssh`
+- `.aws`
+- `.gnupg`
+
+Examples of files it skips include:
+
+- `.DS_Store`
+- `.env`
+- `.npmrc`
+- `.netrc`
+- `.gitignore`
+- `.htpasswd`
+
+It also skips file extensions often associated with private keys or certificates, such as:
+
+- `.pem`
+- `.key`
+- `.p12`
+- `.pfx`
+
+These rules help prevent some unrelated or sensitive files from being included in the deployment.
+
+### File and project limits
+
+The current publishing workflow enforces limits during preparation, including:
+
+- A maximum of 25 MiB per file
+- A maximum of 20,000 files
+
+If these limits are exceeded, PagePort should stop the preparation process and explain the problem rather than completing the upload.
+
+### Why filtering is not enough
+
+A secret can be stored in a file with an ordinary name, included directly in a webpage, or copied into a public JavaScript file.
+
+Filtering common filenames cannot identify every possible secret or private file.
+
+Always inspect the contents of your website before publishing, especially when importing a project from another person or an unfamiliar tool.
+
+---
+
+## What PagePort Does Not Do
+
+PagePort focuses on publishing static website files. It is not a full web-development platform or general-purpose backend host.
+
+### PagePort does not run your server-side application
+
+PagePort does not turn server-side code into a functioning backend.
+
+For example, publishing a Python, PHP, or Ruby server application as ordinary static files will not automatically make that application run on a server.
+
+If your project needs a backend, database, or server-side application, you must host and configure that component separately.
+
+### PagePort does not automatically build every framework project
+
+Some website projects must be compiled, bundled, or exported before they can be hosted as static files.
+
+If your project uses a framework that requires a production build, follow that framework's instructions first.
+
+Then import the generated output folder that contains the final files intended to be served to visitors.
+
+For a typical static site, that folder should contain a root-level `index.html`.
+
+### PagePort does not automatically synchronize your original folder
+
+After you import a website, PagePort maintains its own working copy.
+
+Later edits to a separate source folder do not automatically appear in the saved copy. Re-import the revised site before publishing.
+
+### PagePort does not provide visitor accounts
+
+PagePort does not include a built-in system for creating visitor accounts, managing passwords, or restricting access to individual users.
+
+If your website needs these features, configure an appropriate service separately.
+
+### PagePort does not operate Cloudflare's hosting network
+
+Cloudflare provides the hosting, deployment, and network services used by PagePort.
+
+Cloudflare controls its service availability, limits, dashboard layout, API behavior, and applicable pricing.
+
+---
+
+## Troubleshooting
+
+This section covers common problems beginners may encounter while using PagePort.
+
+### Problem: PagePort cannot find an HTML page
+
+**Possible cause:** The selected folder or ZIP does not contain the expected HTML file, or the actual website is stored inside a nested folder.
+
+**What to do:**
+
+1. Open the selected folder or ZIP in Finder.
+2. Look for a file ending in `.html` or `.htm`.
+3. For a standard static site, locate `index.html`.
+4. If the website is inside a nested folder, select the folder that actually contains the website files.
+5. Import the website again.
+
+### Problem: The preview opens, but images or styling are missing
+
+**Possible cause:** Only the HTML file was imported, while the CSS, JavaScript, images, or other assets were left behind.
+
+**What to do:**
+
+1. Locate the complete website folder.
+2. Check that the HTML references the expected files.
+3. Import the complete folder or ZIP instead of just the HTML file.
+4. Preview the site again.
+
+Also check the capitalization of filenames. Some hosting environments treat `Logo.png` and `logo.png` as different files.
+
+### Problem: PagePort says Cloudflare is not connected
+
+**Possible causes:** The Account ID has not been saved, the token is missing, the token is invalid, or the network connection is unavailable.
+
+**What to do:**
+
+1. Open **Cloudflare Account Settings…**.
+2. Check that the Account ID is correct.
+3. Make sure the token has been verified and saved.
+4. Choose **Test Connection**.
+5. Check your internet connection if the test still fails.
+
+If necessary, create a replacement token in Cloudflare and save it in PagePort.
+
+### Problem: The token verifies, but PagePort cannot access my Pages projects
+
+A token can be valid while still lacking the permission or account scope required for Pages.
+
+Check that the token has:
+
+**Account → Cloudflare Pages → Edit**
+
+Also verify that the token applies to the Cloudflare account associated with the Account ID saved in PagePort.
+
+A token for one account does not automatically authorize access to a different account.
+
+### Problem: Publishing failed
+
+First, read the exact error message displayed by PagePort.
+
+Check the following:
+
+- Your Mac is connected to the internet.
+- Cloudflare is connected in PagePort.
+- The token has the required permissions.
+- You selected the correct Pages project.
+- Your website files are organized correctly.
+- Your files do not exceed the limits enforced by PagePort's publishing workflow.
+
+If the problem continues, inspect the selected project's status and settings in the Cloudflare dashboard.
+
+Do not share your API token when asking for help.
+
+### Problem: The website did not open after publishing
+
+Cloudflare may accept a deployment without PagePort immediately verifying the public URL.
+
+**What to do:**
+
+1. Open **Website Link, Traffic & QR…**.
+2. Try opening the published website if a verified URL is available.
+3. If not, choose **Open Cloudflare Dashboard**.
+4. Inspect the deployment status and domain information.
+5. Follow any status information shown by Cloudflare.
+
+PagePort avoids guessing a public URL when it cannot verify the actual address.
+
+### Problem: I selected the wrong Cloudflare Pages project
+
+Choose **Choose Cloudflare Project…** and select the intended project.
+
+Before publishing, verify the selected project name.
+
+Remember that the next publication can replace the target project's current website files.
+
+Changing the selection does not itself publish the site, but confirming a later publication can deploy the current local website to that destination.
+
+### Problem: My changes do not appear on the live website
+
+**Possible cause:** PagePort may still be using the previously imported copy.
+
+**What to do:**
+
+1. Save your latest changes in your website editor.
+2. Re-import the updated website into PagePort.
+3. Preview the local copy.
+4. Publish again to the intended project.
+5. Open the public URL and verify the result.
+
+If the browser still displays old content, reload the page or try a private browsing window to check whether a cached copy is being shown.
+
+### Problem: The QR code did not generate
+
+QR generation requires internet access because PagePort requests an image from an external service.
+
+Check your connection and try again.
+
+If it still fails, open the published website and use another QR-code tool you trust. Remember that external QR services may receive the URL you submit.
+
+### Problem: I cannot see visitor analytics
+
+Publishing a website does not automatically mean analytics are enabled.
+
+Open the Cloudflare Pages dashboard, enable Web Analytics for the project if available, and allow time for information to be collected.
+
+A newly published website or a site with few visitors may not have much information to display.
+
+### Problem: macOS blocks PagePort from opening
+
+This release is not notarized.
+
+Only proceed if you trust the application source. Consult Apple's current guidance for the security options available on your macOS version:
+
+[Apple Support: Safely open apps on your Mac](https://support.apple.com/102445)
+
+### Problem: I still need help
+
+When opening a GitHub issue, include:
+
+- The PagePort version you are using
+- Your macOS version
+- The action you attempted
+- The exact error message
+- The steps that reproduce the problem
+
+Do **not** include API tokens, passwords, private keys, or other secrets in the issue.
+
+If the issue involves Cloudflare permissions, describe the relevant permission settings without sharing the actual token.
+
+---
+
+## Frequently Asked Questions
+
+### Do I need to know how to code?
+
+Not to use the basic import, preview, and publish workflow.
+
+You do need a website to publish. Creating or changing a website may require HTML, CSS, JavaScript, or a website-building tool, depending on what you want to make.
+
+### Do I need to use Terminal?
+
+No Terminal commands are required for the ordinary PagePort workflow described in this guide.
+
+### Do I need to install Node.js or Homebrew?
+
+No. PagePort uses built-in macOS scripting components and its included bridge script rather than requiring those separate runtimes.
+
+### Does previewing publish my website?
+
+No. Previewing opens the local copy on your Mac.
+
+Publishing is a separate action that sends the website files to Cloudflare Pages.
+
+### Can I publish more than one website?
+
+PagePort keeps one active local website selection at a time.
+
+You can import a different website and choose the Cloudflare Pages project where it should be published. However, be careful: the next publication can replace the target project's files.
+
+Keep separate source folders and backups for the websites you need to preserve.
+
+### Does PagePort automatically publish changes when I save a file?
+
+No. Re-import the changed website and publish it again when you are ready.
+
+### Is my published website private?
+
+A normal Cloudflare Pages deployment is public.
+
+You must configure an appropriate access-control solution separately if you need restricted access. A hard-to-guess URL is not a reliable security boundary.
+
+### Does PagePort provide a domain name?
+
+PagePort uses Cloudflare Pages and displays the URL Cloudflare returns for the project.
+
+Custom domains and DNS configuration are managed through Cloudflare and may require additional setup.
+
+### Does PagePort include traffic analytics?
+
+PagePort provides access to the Cloudflare dashboard, where available analytics can be configured and viewed.
+
+Actual visitor statistics depend on Cloudflare Web Analytics being enabled and collecting data.
+
+### Where is my API token stored?
+
+After verification, PagePort stores the API token in macOS Keychain.
+
+Your Account ID and website working files are stored separately in PagePort's local Application Support data.
+
+### Can I use PagePort to host a backend or database?
+
+Not directly. PagePort is designed for static files.
+
+If your website needs a backend or database, you must host and configure that component separately or use a hosting platform appropriate for your application.
+
+### Can I publish a website made with an AI coding tool?
+
+Yes, provided the resulting project is compatible with static hosting.
+
+Import the HTML file, website folder, or ZIP archive. If the project requires a build step, generate the static production files first and import the resulting output folder.
+
+Check the website locally and after publication to make sure its features work as expected.
+
+### What happens if I disconnect Cloudflare?
+
+PagePort removes its saved token from Keychain and clears its saved Account ID.
+
+Your published Cloudflare Pages project is not deleted by disconnecting, and your local working copy is retained.
+
+You must reconnect Cloudflare before publishing again.
+
+---
+
+## Privacy and External Services
+
+PagePort relies on Cloudflare for account authentication, Pages project access, deployment, and hosting.
+
+When you publish a website, its files must be sent to Cloudflare for deployment. This is how the website becomes available online.
+
+Previewing local files does not by itself publish or upload the website.
+
+### QR-code service
+
+The QR-code feature uses a separate online service:
+
+[api.qrserver.com](https://api.qrserver.com/)
+
+After you confirm the QR-generation prompt, PagePort sends the public website URL to this service to create the QR image.
+
+Do not use the feature if you do not want the URL sent to the external service.
+
+### Local information
+
+PagePort stores its API token in macOS Keychain after successful verification.
+
+It also retains local working files and settings in your user's Application Support directory so it can remember the selected website and project.
+
+If you uninstall PagePort, its local files or saved Keychain item may need to be removed separately if you want to clear the associated data. Do this carefully so you do not delete website files you still need.
+
+### Cloudflare services
+
+Cloudflare controls its own services, dashboard labels, deployment limits, API behavior, and pricing.
+
+Review Cloudflare's current terms and documentation for details about its hosting services.
+
+---
+
+## Contributing
+
+Contributions, suggestions, bug reports, and improvements are welcome.
+
+Before submitting a contribution, describe the problem you want to solve and explain how you tested the change.
+
+### Source files
+
+The `Source/` directory contains the main source files used in the PagePort project.
+
+- `Source/PagePort.applescript` — Main menu, importing workflow, local preview, account settings, project selection, and publishing coordination.
+- `Source/CloudflareBridge.js` — Cloudflare Pages asset preparation and helper operations.
+- `Source/PagePortIcon.png` — PNG application icon source.
+
+The shipped application uses built-in macOS scripting components and system utilities. The source files are included for inspection and development, but ordinary users do not need to build the application from source to follow the usage instructions in this README.
+
+### Reporting bugs
+
+When reporting a bug, include:
+
+- The macOS version you are using
+- The PagePort version
+- The steps that reproduce the issue
+- What you expected to happen
+- What actually happened
+- Any relevant error message
+
+Never submit real Cloudflare API tokens, private credentials, private website files, or personal data in a commit or issue.
+
+### Suggesting a feature
+
+Feature suggestions are most useful when they explain what the feature would do, why it would help, and how a user would interact with it.
+
+---
+
+## Helpful Documentation
+
+The following official resources can help you understand the services PagePort uses.
+
+- [Cloudflare Pages documentation](https://developers.cloudflare.com/pages/)
+- [Cloudflare Pages API documentation](https://developers.cloudflare.com/pages/configuration/api/)
+- [Create a Cloudflare API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/)
+- [Cloudflare API token permissions](https://developers.cloudflare.com/fundamentals/api/reference/permissions/)
+- [Cloudflare dashboard](https://dash.cloudflare.com/)
+- [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens)
+- [Apple Support: Safely open apps on your Mac](https://support.apple.com/102445)
+
+---
+
+## License
+
+A license file has not been included in this package.
+
+Unless the repository owner adds a license, assume normal copyright applies. Do not assume that the source code may be redistributed, modified, or reused under an open-source license.
+
+If you intend to publish PagePort as an open-source project, add a license file that clearly states the permissions and conditions for using the code.
+
+---
+
+## PagePort 1.0
+
+**Import. Preview. Publish.**
+
+PagePort makes it easier to take a static website from your Mac and publish it online through Cloudflare Pages—all through a straightforward macOS interface.
