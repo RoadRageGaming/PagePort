@@ -1,6 +1,6 @@
 # PagePort
 
-**Please keep in mind that PagePort is a WEB APP!**
+**Please keep in mind that PagePort is a WEB APP! We will make changes soon to be a standalone.**
 
 ### A beginner-friendly way to preview and publish a static website from your Mac
 
